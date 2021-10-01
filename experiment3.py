@@ -23,18 +23,19 @@ dt.to_csv(name, index=True)
 
 for p in range(1, 5):
     for gamma in np.arange(0.01, 0.05, 0.01):
-        noise_model = NoiseModel()
-        error1 = depolarizing_error(gamma, 1)
-        error2 = depolarizing_error(gamma*2, 2)
-        noise_model.add_all_qubit_quantum_error(error1, ['rx', 'h', 'rz'])
-        noise_model.add_all_qubit_quantum_error(error2, ['cnot', 'cx'])
+        for aux in range(20):
+            noise_model = NoiseModel()
+            error1 = depolarizing_error(gamma, 1)
+            error2 = depolarizing_error(gamma*2, 2)
+            noise_model.add_all_qubit_quantum_error(error1, ['rx', 'h', 'rz'])
+            noise_model.add_all_qubit_quantum_error(error2, ['cnot', 'cx'])
 
-        df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=17, alpha2=17, cvar_alpha=alpha,
-                                     weights=weights, noise=noise_model)
+            df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=17, alpha2=17, cvar_alpha=alpha,
+                                         weights=weights, noise=noise_model)
 
-        dt.loc[index] = [df.loc[0, 'state'], df.loc[0, 'prob'], df.loc[0, 'cost'], its, p, avr_C]
-        index = index + 1
-        dt.to_csv(name, index=True)
+            dt.loc[index] = [df.loc[0, 'state'], df.loc[0, 'prob'], df.loc[0, 'cost'], its, p, avr_C]
+            index = index + 1
+            dt.to_csv(name, index=True)
 
 
 
