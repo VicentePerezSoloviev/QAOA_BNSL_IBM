@@ -17,7 +17,7 @@ def execute_ibm(n, p, nbshots, alpha1, alpha2, cvar_alpha, weights, noise: None)
 
     # Create a job
     # job = my_circuit.to_job(nbshots=nbshots)
-    backend = Aer.get_backend('aer_simulator')
+    backend = Aer.get_backend('qasm_simulator')
 
     # Execute
     if noise is not None:

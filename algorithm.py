@@ -53,7 +53,7 @@ def get_black_box_objective(p, n, alpha1, alpha2, weights, nbshots, alpha, noise
 
         # Create a job
         # job = my_circuit.to_job(nbshots=nbshots)
-        backend = Aer.get_backend('aer_simulator')
+        backend = Aer.get_backend('qasm_simulator')
 
         # Execute
         if noise is not None:
