@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-phase_damping_error
+depolarizing_error
 """
 
 import pandas as pd
@@ -22,10 +22,10 @@ dt = pd.DataFrame(columns=['state', 'prob', 'cost', 'iteration', 'p', 'time', 'a
 dt.to_csv(name, index=True)
 
 for p in range(1, 5):
-    for gamma in np.arange(0.01, 0.1, 0.01):
+    for gamma in np.arange(0.01, 0.05, 0.01):
         noise_model = NoiseModel()
         error1 = depolarizing_error(gamma, 1)
-        error2 = depolarizing_error(gamma*10, 2)
+        error2 = depolarizing_error(gamma*2, 2)
         noise_model.add_all_qubit_quantum_error(error1, ['rx', 'h', 'rz'])
         noise_model.add_all_qubit_quantum_error(error2, ['cnot', 'cx'])
 

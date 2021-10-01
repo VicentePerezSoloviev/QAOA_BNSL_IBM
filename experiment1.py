@@ -25,7 +25,7 @@ for p in range(1, 5):
     for gamma in np.arange(0.01, 0.1, 0.01):
         noise_model = NoiseModel()
         error = amplitude_damping_error(gamma)
-        noise_model.add_all_qubit_quantum_error(error, ['rx', 'h', 'rz', 'cx', 'cnot'])
+        noise_model.add_all_qubit_quantum_error(error, ['rx', 'h', 'rz'])
 
         df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=17, alpha2=17, cvar_alpha=alpha,
                                      weights=weights, noise=noise_model)
