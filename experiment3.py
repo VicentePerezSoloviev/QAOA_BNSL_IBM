@@ -18,7 +18,7 @@ index = 0
 weights = [-10, -1, -1, -1, -10, -1]
 nbshots = 1000
 name = 'ibm_exp3_alpha09.csv'
-dt = pd.DataFrame(columns=['state', 'prob', 'cost', 'iteration', 'p', 'time', 'avr_C'])
+dt = pd.DataFrame(columns=['state', 'prob', 'cost', 'iteration', 'p', 'avr_C'])
 dt.to_csv(name, index=True)
 
 for p in range(1, 5):
