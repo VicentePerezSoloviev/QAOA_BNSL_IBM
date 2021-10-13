@@ -7,7 +7,31 @@ We use n(n-1) qubits for the adj matrix and n(n-1)/2 qubits for the transition m
 
 from itertools import combinations
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from qiskit.circuit import Parameter
+from itertools import permutations
+
+m = 2
+
+
+def mapping_mat_vec(n, row, col):
+    index = 0
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                if i == row and j == col:
+                    return index
+                else:
+                    index = index + 1
+
+
+def mapping_vec_mat(n, index):
+    index_new = 0
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                if index == index_new:
+                    return i, j
+                else:
+                    index_new = index_new + 1
 
 
 def state_2_str(state):
@@ -42,15 +66,14 @@ class QAOA:
         self.q_adj = n * (n - 1)  # number of qubits for the adj matrix
         self.q_r = (n * (n - 1)) / 2  # number of qubits for the transition matrix
 
+        # weights is a matrix o nxn. In indexes ii it is weight(node|i) and ij is weight(node|i,j). Sym matrix
         self.weights = weights
 
         # Create quantum circuit
-        # self.my_program = Program()
         nqubits = int(self.q_adj + self.q_r)
         self.qreg = QuantumRegister(nqubits)
         self.creg = ClassicalRegister(nqubits)
         self.circuit = QuantumCircuit(self.qreg, self.creg)
-        # self.qubits = self.my_program.qalloc(int(self.q_adj + self.q_r))
 
         self.adders = []
         self.gen_adders()
@@ -78,9 +101,28 @@ class QAOA:
             to_bin.append(int(string[i]))
 
         cost = 0
+        # multiplication of each isolated and weight(node|1parent)
         for i in range(self.q_adj):
-            cost = cost + to_bin[i] * self.weights[i]
+            cost = cost + to_bin[i] * self.weights[i][i]
 
+        # multiplication of combination of 2-nodes and weight(node|2parents)
+        for i in range(self.n):
+            array = to_bin[i * (self.n - 1): i * (self.n - 1) + (self.n - 1)]
+            sum_row = sum(array)
+            if sum_row > m:
+                # cases with more than m parents
+                cost = cost + 99999999
+            else:
+                # cases of 0, 1 or 2 parents
+                indexes = [i * (self.n - 1) + j for j, x in enumerate(array) if x == 1]
+                if len(indexes) == 1:
+                    cost = cost + self.weights[indexes[0]][indexes[0]]
+                elif len(indexes) == 2:
+                    cost = cost + self.weights[indexes[0]][indexes[1]]
+                else:
+                    pass
+
+        # restrictions
         for i in self.adders:
             if len(i) == 2:
                 cost = cost + i[0] * to_bin[i[1]]
@@ -92,8 +134,6 @@ class QAOA:
     def add_superposition_layer(self):
         # Superposition
         for i in range(len(self.qreg)):
-            # if not i in self.diagonal:
-            # self.my_program.apply(H, self.qubits[i])
             self.circuit.h(self.qreg[i])
 
     def spin_mult(self, spins, gamma):
@@ -104,14 +144,11 @@ class QAOA:
             raise Exception('A list is required as argument "spins"')
 
         for i in range(len(spins) - 1):
-            # self.my_program.apply(CNOT, spins[i], spins[len(spins) - 1])
             self.circuit.cnot(spins[i], spins[len(spins) - 1])
 
-        # self.my_program.apply(RZ(gamma), spins[len(spins) - 1])
         self.circuit.rz(gamma, spins[len(spins) - 1])
 
         for i in range(len(spins) - 2, -1, -1):
-            # self.my_program.apply(CNOT, spins[i], spins[len(spins) - 1])
             self.circuit.cnot(spins[i], spins[len(spins) - 1])
 
     def adj_mult(self, adjs, gamma, coef):
@@ -124,37 +161,36 @@ class QAOA:
         angle = coef * (gamma * 2) / (2 ** (len(adjs)))
 
         for adj in adjs:
-            # self.my_program.apply(RZ(-angle), self.qubits[adj])  # minus sign as xi -> (1-zi)/2
             self.circuit.rz(-angle, self.qreg[adj])
 
         for tam in range(2, len(adjs) + 1):
             for comb in combinations(adjs, tam):
-                # self.spin_mult([self.qubits[i] for i in list(comb)], angle)
                 self.spin_mult([self.qreg[i] for i in list(comb)], angle)
 
     def add_layer(self, nlayers, beta, gamma):
         for lay in range(nlayers):
-            # gamma = self.my_program.new_var(float, "g" + str(lay))
-            # beta = self.my_program.new_var(float, "b" + str(lay))
-            # gamma = Parameter("g" + str(lay))
-            # beta = Parameter("b" + str(lay))
-
             # Phase Operator
+            # multiplication of each isolated and weight(node|1parent)
             for i in range(self.q_adj):
-                # if not i in self.diagonal:
-                # self.my_program.apply(RZ(gamma * -self.weights[i]), self.qubits[i])
-                self.circuit.rz(gamma[lay] * -self.weights[i], self.qreg[i])
+                self.circuit.rz(gamma[lay] * -self.weights[i][i], self.qreg[i])
 
-            # for i in range(self.q_adj, int(self.q_adj + self.q_r)):
-                # self.my_program.apply(RZ(gamma), self.qubits[i])
+            # multiplication of combination of 2-nodes and weight(node|2parents) in same adj row
+            '''perm = list(permutations(list(range(self.q_adj)), m))
 
+            for i in perm:
+                self.adj_mult([int(i[0]), int(i[1])], gamma[lay], 1)  # coef = 1 -> not in one of the restrictions'''
+
+            for i in range(self.n):
+                perm = list(permutations(list(range(i*(self.n - 1), i*(self.n - 1) + (self.n - 1))), m))
+                for per in perm:
+                    self.adj_mult([int(per[0]), int(per[1])], gamma[lay], 1)  # coef = 1 -> not in the restrictions
+
+            # multiplication of each of the couple restrictions
             for i in self.adders:
                 self.adj_mult(i[1:], gamma[lay], i[0])
 
             # Mixing Operator
             for i in range(len(self.qreg)):
-                # if not i in self.diagonal:
-                # self.my_program.apply(RX(2 * beta), self.qubits[i])
                 self.circuit.rx(2*beta[lay], self.qreg[i])
 
     def measure(self):
