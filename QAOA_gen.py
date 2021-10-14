@@ -5,9 +5,8 @@
 We use n(n-1) qubits for the adj matrix and n(n-1)/2 qubits for the transition matrix
 """
 
-from itertools import combinations
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from itertools import permutations
+from itertools import combinations
 
 m = 2
 
@@ -38,26 +37,11 @@ def state_2_str(state):
     return str(state)[1:len(str(state)) - 1]
 
 
-def index_adj_adder(n, i, j):
-    assert i != j, "Diagonal adjacency indexes must not be taken into account"
-    if j > i:
-        return (i * n) + j - (i + 1)
-    else:
-        return (i * n) + j - i
-
-
-def index_r_adder(n, i, j):
-    assert i < j, "Diagonal r indexes must not be taken into account"
-    aux = n*(n-1)
-    return aux + (i * n) + j - int(((i+2)*(i+1))/2)
-
-
 class QAOA:
     layers = 0
 
     def __init__(self, n, alpha1, alpha2, weights):
-        if len(weights) != n * (n-1):
-            raise Exception('Length of weights matrix is different than expected')
+        assert isinstance(weights, dict), 'Length of weights matrix is different than expected'
 
         self.n = n
         self.alpha1 = alpha1
@@ -66,7 +50,7 @@ class QAOA:
         self.q_adj = n * (n - 1)  # number of qubits for the adj matrix
         self.q_r = (n * (n - 1)) / 2  # number of qubits for the transition matrix
 
-        # weights is a matrix o nxn. In indexes ii it is weight(node|i) and ij is weight(node|i,j). Sym matrix
+        # weights is a matrix of elements whose keys are tuples of first element the target and following the parents
         self.weights = weights
 
         # Create quantum circuit
@@ -78,22 +62,34 @@ class QAOA:
         self.adders = []
         self.gen_adders()
 
+    def index_adj_adder(self, i, j):
+        assert i != j, "Diagonal adjacency indexes must not be taken into account"
+        if j > i:
+            return (i * self.n) + j - (i + 1)
+        else:
+            return (i * self.n) + j - i
+
+    def index_r_adder(self, i, j):
+        assert i < j, "Diagonal r indexes must not be taken into account"
+        aux = self.n * (self.n - 1)
+        return aux + (i * self.n) + j - int(((i + 2) * (i + 1)) / 2)
+
     def gen_adders(self):
         # Transcription of the general formulas of hamiltonian to general indexes of qubits
         
         for i in range(self.n):
             for j in range(i + 1, self.n):
                 for k in range(j + 1, self.n):
-                    self.adders.append([self.alpha1, index_r_adder(self.n, i, k)])
-                    self.adders.append([self.alpha1, index_r_adder(self.n, i, j), index_r_adder(self.n, j, k)])
-                    self.adders.append([-self.alpha1, index_r_adder(self.n, i, j), index_r_adder(self.n, i, k)])
-                    self.adders.append([-self.alpha1, index_r_adder(self.n, j, k), index_r_adder(self.n, i, k)])
+                    self.adders.append([self.alpha1, self.index_r_adder(i, k)])
+                    self.adders.append([self.alpha1, self.index_r_adder(i, j), self.index_r_adder(j, k)])
+                    self.adders.append([-self.alpha1, self.index_r_adder(i, j), self.index_r_adder(i, k)])
+                    self.adders.append([-self.alpha1, self.index_r_adder(j, k), self.index_r_adder(i, k)])
 
         for i in range(self.n):
             for j in range(i + 1, self.n):
-                self.adders.append([self.alpha2, index_adj_adder(self.n, j, i), index_r_adder(self.n, i, j)])
-                self.adders.append([self.alpha2, index_adj_adder(self.n, i, j)])
-                self.adders.append([-self.alpha2, index_adj_adder(self.n, i, j), index_r_adder(self.n, i, j)])
+                self.adders.append([self.alpha2, self.index_adj_adder(j, i), self.index_r_adder(i, j)])
+                self.adders.append([self.alpha2, self.index_adj_adder(i, j)])
+                self.adders.append([-self.alpha2, self.index_adj_adder(i, j), self.index_r_adder(i, j)])
 
     def evaluate_solution(self, string):
         to_bin = []
@@ -102,24 +98,35 @@ class QAOA:
 
         cost = 0
         # multiplication of each isolated and weight(node|1parent)
-        for i in range(self.q_adj):
-            cost = cost + to_bin[i] * self.weights[i][i]
+        '''for i in range(self.q_adj):
+            cost = cost + to_bin[i] * self.weights[i][i]'''
 
         # multiplication of combination of 2-nodes and weight(node|2parents)
         for i in range(self.n):
-            array = to_bin[i * (self.n - 1): i * (self.n - 1) + (self.n - 1)]
-            sum_row = sum(array)
-            if sum_row > m:
+            # array = to_bin[i * (self.n - 1): i * (self.n - 1) + (self.n - 1)]  # separate each row of adj matrix
+            array = [[to_bin[mapping_mat_vec(self.n, k, i)], mapping_mat_vec(self.n, k, i)]
+                     for k in range(self.n) if k != i]  # separate each col adj m
+            sum_col = sum([k[0] for k in array])
+            if sum_col > m:
                 # cases with more than m parents
-                cost = cost + 99999999
+                cost = cost + 99999999  # penalize
             else:
                 # cases of 0, 1 or 2 parents
-                indexes = [i * (self.n - 1) + j for j, x in enumerate(array) if x == 1]
+                # find index of each 1
+                # indexes = [j * (self.n-1) for j, x in enumerate(array) if x == 1]  # index general array(no diagonal)
+                indexes = [k[1] for k in array if k[0] == 1]  # index general array(no diagonal)
                 if len(indexes) == 1:
-                    cost = cost + self.weights[indexes[0]][indexes[0]]
+                    # weight (i | index)
+                    row, col = mapping_vec_mat(self.n, indexes[0])
+                    cost = cost + self.weights[i, row]
                 elif len(indexes) == 2:
-                    cost = cost + self.weights[indexes[0]][indexes[1]]
+                    # weight (i | index, index)
+                    row1, col1 = mapping_vec_mat(self.n, indexes[0])
+                    row2, col2 = mapping_vec_mat(self.n, indexes[1])
+
+                    cost = cost + self.weights[i, row1, row2]
                 else:
+                    # 0
                     pass
 
         # restrictions
@@ -171,19 +178,20 @@ class QAOA:
         for lay in range(nlayers):
             # Phase Operator
             # multiplication of each isolated and weight(node|1parent)
-            for i in range(self.q_adj):
-                self.circuit.rz(gamma[lay] * -self.weights[i][i], self.qreg[i])
-
-            # multiplication of combination of 2-nodes and weight(node|2parents) in same adj row
-            '''perm = list(permutations(list(range(self.q_adj)), m))
-
-            for i in perm:
-                self.adj_mult([int(i[0]), int(i[1])], gamma[lay], 1)  # coef = 1 -> not in one of the restrictions'''
-
             for i in range(self.n):
-                perm = list(permutations(list(range(i*(self.n - 1), i*(self.n - 1) + (self.n - 1))), m))
+                for j in range(self.n):
+                    if i != j:
+                        # in qubit i, j is the weight of j->i
+                        self.circuit.rz(gamma[lay] * -self.weights[i, j], self.qreg[self.index_adj_adder(j, i)])
+
+            # multiplication of combination of 2-nodes and weight(node|2parents) in same adj col
+            for i in range(self.n):
+                array = [k for k in range(self.n) if k != i]
+                perm = combinations(array, m)
                 for per in perm:
-                    self.adj_mult([int(per[0]), int(per[1])], gamma[lay], 1)  # coef = 1 -> not in the restrictions
+                    # i | perm, perm
+                    self.adj_mult([self.index_adj_adder(per[0], i), self.index_adj_adder(per[1], i)],
+                                  gamma[lay], self.weights[i, per[0], per[1]])  # coef = 1 -> not in the restrictions
 
             # multiplication of each of the couple restrictions
             for i in self.adders:
