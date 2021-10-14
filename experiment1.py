@@ -10,19 +10,22 @@ import pandas as pd
 from execute import execute_ibm
 from qiskit.providers.aer.noise import amplitude_damping_error, NoiseModel
 import numpy as np
+from scores import Scores
 
-n = 3
+n = 4
+scores = Scores()
+weights = scores.load_data("cancer.txt")
 p_max = 7
 alpha = 0.9
 index = 0
-weights = [-10, -1, -1, -1, -10, -1]
+# weights = [-10, -1, -1, -1, -10, -1]
 nbshots = 1000
-name = 'ibm_exp1_alpha09.csv'
+name = 'ibm_exp1_alpha09_cancer.csv'
 dt = pd.DataFrame(columns=['state', 'prob', 'cost', 'iteration', 'p', 'avr_C'])
 dt.to_csv(name, index=True)
 
-for p in range(1, 5):
-    for gamma in np.arange(0.01, 0.1, 0.01):
+for p in range(1, 6):
+    for gamma in [10**(-4), 10**(-3.5), 10**(-3), 10**(-2.5), 10**(-2), 10**(-1.5), 10**(-1), 10**(-0.5), 1]:
         for aux in range(20):
             noise_model = NoiseModel()
             error = amplitude_damping_error(gamma)
