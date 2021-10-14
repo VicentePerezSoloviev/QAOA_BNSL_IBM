@@ -1,10 +1,29 @@
 from execute import execute_ibm
 import pandas as pd
+from itertools import combinations
+
+
+def generate_zero_weight_matrix(n):
+    matrix = {}
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                matrix[i, j] = 0
+
+        array = [k for k in range(n) if k != i]
+        for com in combinations(array, 2):
+            matrix[i, com[0], com[1]] = 0
+
+    return matrix
+
 
 n = 4
 p = 1
 alpha = 0.9
-weights = [[-10, -1, -1, -1, -10, -1, -4, -5, -10, -1, -4, -5]]*12
+weights = generate_zero_weight_matrix(n)
+weights[1, 0] = -10
+weights[2, 0] = -10
+weights[3, 1, 2] = -10
 nbshots = 1000
 index = 0
 
