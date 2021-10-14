@@ -4,6 +4,7 @@
 from execute import execute_ibm
 from qiskit.providers.aer.noise import depolarizing_error, NoiseModel
 from itertools import combinations
+from scores import Scores
 
 
 def generate_zero_weight_matrix(n):
@@ -20,15 +21,18 @@ def generate_zero_weight_matrix(n):
     return matrix
 
 
-n = 3
-p = 1
+p = 3
 alpha = 0.9
 nbshots = 1000
 
-weights = generate_zero_weight_matrix(n)
+'''weights = generate_zero_weight_matrix(n)
 weights[1, 0] = -10
 weights[2, 0] = -10
-weights[3, 1, 2] = -10
+weights[3, 1, 2] = -10'''
+
+n = 5
+scores = Scores()
+weights = scores.load_data("cancer.txt")
 
 gamma = 0.5
 noise_model = NoiseModel()
