@@ -1,90 +1,120 @@
-Pollution Cancer Dyspnoea -1014.39446681782
-Pollution Cancer -404.580840233694
-Pollution Dyspnoea -941.789323243659
-Pollution Cancer Smoker -1023.67016062614
-Pollution Cancer -404.580840233694
-Pollution Smoker -948.67002656803
-Pollution Cancer Xray -924.165779482282
-Pollution Cancer -404.580840233694
-Pollution Xray -849.43785499809
-Pollution Dyspnoea Smoker -1559.83229532766
-Pollution Dyspnoea -941.789323243659
-Pollution Smoker -948.67002656803
-Pollution Dyspnoea Xray -1461.60310963581
-Pollution Dyspnoea -941.789323243659
-Pollution Xray -849.43785499809
-Pollution Smoker Xray -1468.68459987633
-Pollution Smoker -948.67002656803
-Pollution Xray -849.43785499809
-Smoker Cancer Dyspnoea -1281.85142393444
-Smoker Cancer -669.823124582557
-Smoker Dyspnoea -1220.6203524165
-Smoker Cancer Pollution -1009.20760528936
-Smoker Cancer -669.823124582557
-Smoker Pollution -948.67002656803
-Smoker Cancer Xray -1189.54173532306
-Smoker Cancer -669.823124582557
-Smoker Xray -1127.3229783166
-Smoker Dyspnoea Pollution -1558.95848481486
-Smoker Dyspnoea -1220.6203524165
-Smoker Pollution -948.67002656803
-Smoker Dyspnoea Xray -1738.14063728479
-Smoker Dyspnoea -1220.6203524165
-Smoker Xray -1127.3229783166
-Smoker Pollution Xray -1466.8648835092
-Smoker Pollution -948.67002656803
-Smoker Xray -1127.3229783166
-Cancer Dyspnoea Pollution -1010.88863090405
-Cancer Dyspnoea -673.830050447915
-Cancer Pollution -404.580840233694
-Cancer Dyspnoea Smoker -1279.21939853347
-Cancer Dyspnoea -673.830050447915
-Cancer Smoker -669.823124582557
-Cancer Dyspnoea Xray -1178.72809658572
-Cancer Dyspnoea -673.830050447915
-Cancer Xray -570.976968373622
-Cancer Pollution Smoker -1009.27669552265
-Cancer Pollution -404.580840233694
-Cancer Smoker -669.823124582557
-Cancer Pollution Xray -910.158329739792
-Cancer Pollution -404.580840233694
-Cancer Xray -570.976968373622
-Cancer Smoker Xray -1177.35400194771
-Cancer Smoker -669.823124582557
-Cancer Xray -570.976968373622
-Xray Cancer Dyspnoea -1182.28367269554
-Xray Cancer -570.976968373622
-Xray Dyspnoea -1122.33840676772
-Xray Cancer Pollution -910.062564294205
-Xray Cancer -570.976968373622
-Xray Pollution -849.43785499809
-Xray Cancer Smoker -1189.90107547176
-Xray Cancer -570.976968373622
-Xray Smoker -1127.3229783166
-Xray Dyspnoea Pollution -1461.65284983187
-Xray Dyspnoea -1122.33840676772
-Xray Pollution -849.43785499809
-Xray Dyspnoea Smoker -1739.06418799365
-Xray Dyspnoea -1122.33840676772
-Xray Smoker -1127.3229783166
-Xray Pollution Smoker -1466.8382082969
-Xray Pollution -849.43785499809
-Xray Smoker -1127.3229783166
-Dyspnoea Cancer Pollution -1010.94732513113
-Dyspnoea Cancer -673.830050447915
-Dyspnoea Pollution -941.789323243659
-Dyspnoea Cancer Smoker -1292.86683758452
-Dyspnoea Cancer -673.830050447915
-Dyspnoea Smoker -1220.6203524165
-Dyspnoea Cancer Xray -1192.93974619693
-Dyspnoea Cancer -673.830050447915
-Dyspnoea Xray -1122.33840676772
-Dyspnoea Pollution Smoker -1559.08626927521
-Dyspnoea Pollution -941.789323243659
-Dyspnoea Smoker -1220.6203524165
-Dyspnoea Pollution Xray -1461.80730950453
-Dyspnoea Pollution -941.789323243659
-Dyspnoea Xray -1122.33840676772
-Dyspnoea Smoker Xray -1740.16455352064
-Dyspnoea Smoker -1220.6203524165
-Dyspnoea Xray -1122.33840676772
+Pollution Cancer Dyspnoea -1041.03325158898
+Pollution Cancer -1036.18045558595
+Pollution Dyspnoea -1036.04793857871
+Pollution -1033.43535816946
+Pollution Cancer Smoker -1042.16351254279
+Pollution Cancer -1036.18045558595
+Pollution Smoker -1036.416137934
+Pollution -1033.43535816946
+Pollution Cancer Xray -1041.18006041652
+Pollution Cancer -1036.18045558595
+Pollution Xray -1035.30605423032
+Pollution -1033.43535816946
+Pollution Dyspnoea Smoker -1041.20126764936
+Pollution Dyspnoea -1036.04793857871
+Pollution Smoker -1036.416137934
+Pollution -1033.43535816946
+Pollution Dyspnoea Xray -1037.78357164912
+Pollution Dyspnoea -1036.04793857871
+Pollution Xray -1035.30605423032
+Pollution -1033.43535816946
+Pollution Smoker Xray -1041.38546350629
+Pollution Smoker -1036.416137934
+Pollution Xray -1035.30605423032
+Pollution -1033.43535816946
+Smoker Cancer Dyspnoea -1036.25627366553
+Smoker Cancer -1030.18476082
+Smoker Dyspnoea -1036.24803536364
+Smoker -1033.43535816946
+Smoker Cancer Pollution -1036.16781777684
+Smoker Cancer -1030.18476082
+Smoker Pollution -1036.416137934
+Smoker -1033.43535816946
+Smoker Cancer Xray -1035.359990228
+Smoker Cancer -1030.18476082
+Smoker Xray -1036.1803752191
+Smoker -1033.43535816946
+Smoker Dyspnoea Pollution -1041.4013644343
+Smoker Dyspnoea -1036.24803536364
+Smoker Pollution -1036.416137934
+Smoker -1033.43535816946
+Smoker Dyspnoea Xray -1041.31509314432
+Smoker Dyspnoea -1036.24803536364
+Smoker Xray -1036.1803752191
+Smoker -1033.43535816946
+Smoker Pollution Xray -1042.25978449507
+Smoker Pollution -1036.416137934
+Smoker Xray -1036.1803752191
+Smoker -1033.43535816946
+Cancer Dyspnoea Pollution -1040.49779490546
+Cancer Dyspnoea -1035.5124818952
+Cancer Pollution -1036.18045558595
+Cancer -1033.43535816946
+Cancer Dyspnoea Smoker -1035.52072019708
+Cancer Dyspnoea -1035.5124818952
+Cancer Smoker -1030.18476082
+Cancer -1033.43535816946
+Cancer Dyspnoea Xray -1036.99265243786
+Cancer Dyspnoea -1035.5124818952
+Cancer Xray -1032.3265233188
+Cancer -1033.43535816946
+Cancer Pollution Smoker -1035.93213542879
+Cancer Pollution -1036.18045558595
+Cancer Smoker -1030.18476082
+Cancer -1033.43535816946
+Cancer Pollution Xray -1038.20052950499
+Cancer Pollution -1036.18045558595
+Cancer Xray -1032.3265233188
+Cancer -1033.43535816946
+Cancer Smoker Xray -1031.5061383277
+Cancer Smoker -1030.18476082
+Cancer Xray -1032.3265233188
+Cancer -1033.43535816946
+Xray Cancer Dyspnoea -1037.788941158
+Xray Cancer -1032.3265233188
+Xray Dyspnoea -1036.30877061533
+Xray -1033.43535816946
+Xray Cancer Pollution -1037.32612814936
+Xray Cancer -1032.3265233188
+Xray Pollution -1035.30605423032
+Xray -1033.43535816946
+Xray Cancer Smoker -1037.5017527268
+Xray Cancer -1032.3265233188
+Xray Smoker -1036.1803752191
+Xray -1033.43535816946
+Xray Dyspnoea Pollution -1038.04440368574
+Xray Dyspnoea -1036.30877061533
+Xray Pollution -1035.30605423032
+Xray -1033.43535816946
+Xray Dyspnoea Smoker -1041.37582839601
+Xray Dyspnoea -1036.30877061533
+Xray Smoker -1036.1803752191
+Xray -1033.43535816946
+Xray Pollution Smoker -1041.14970079139
+Xray Pollution -1035.30605423032
+Xray Smoker -1036.1803752191
+Xray -1033.43535816946
+Dyspnoea Cancer Pollution -1040.36527789822
+Dyspnoea Cancer -1035.5124818952
+Dyspnoea Pollution -1036.04793857871
+Dyspnoea -1033.43535816946
+Dyspnoea Cancer Smoker -1041.58399474072
+Dyspnoea Cancer -1035.5124818952
+Dyspnoea Smoker -1036.24803536364
+Dyspnoea -1033.43535816946
+Dyspnoea Cancer Xray -1040.97489973439
+Dyspnoea Cancer -1035.5124818952
+Dyspnoea Xray -1036.30877061533
+Dyspnoea -1033.43535816946
+Dyspnoea Pollution Smoker -1041.03316507901
+Dyspnoea Pollution -1036.04793857871
+Dyspnoea Smoker -1036.24803536364
+Dyspnoea -1033.43535816946
+Dyspnoea Pollution Xray -1038.78628803413
+Dyspnoea Pollution -1036.04793857871
+Dyspnoea Xray -1036.30877061533
+Dyspnoea -1033.43535816946
+Dyspnoea Smoker Xray -1041.44348854055
+Dyspnoea Smoker -1036.24803536364
+Dyspnoea Xray -1036.30877061533
+Dyspnoea -1033.43535816946

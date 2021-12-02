@@ -118,15 +118,18 @@ class QAOA:
                 if len(indexes) == 1:
                     # weight (i | index)
                     row, col = mapping_vec_mat(self.n, indexes[0])
-                    cost = cost + self.weights[i, row]
+                    value = self.weights[i, row]
+                    cost = cost + value
                 elif len(indexes) == 2:
                     # weight (i | index, index)
                     row1, col1 = mapping_vec_mat(self.n, indexes[0])
                     row2, col2 = mapping_vec_mat(self.n, indexes[1])
 
-                    cost = cost + self.weights[i, row1, row2]
+                    value = self.weights[i, row1, row2]
+                    cost = cost + value
                 else:
                     # 0
+                    cost = cost + self.weights[i]
                     pass
 
         # restrictions
@@ -182,7 +185,8 @@ class QAOA:
                 for j in range(self.n):
                     if i != j:
                         # in qubit i, j is the weight of j->i
-                        self.circuit.rz(gamma[lay] * -self.weights[i, j], self.qreg[self.index_adj_adder(j, i)])
+                        value = (-1) * (self.weights[i, j] - self.weights[i])  # subtract w_i({null})
+                        self.circuit.rz(gamma[lay] * value, self.qreg[self.index_adj_adder(j, i)])
 
             # multiplication of combination of 2-nodes and weight(node|2parents) in same adj col
             for i in range(self.n):
@@ -190,8 +194,10 @@ class QAOA:
                 perm = combinations(array, m)
                 for per in perm:
                     # i | perm, perm
+                    value = self.weights[i, per[0], per[1]] + self.weights[i] - \
+                            self.weights[i, per[0]] - self.weights[i, per[1]]
                     self.adj_mult([self.index_adj_adder(per[0], i), self.index_adj_adder(per[1], i)],
-                                  gamma[lay], self.weights[i, per[0], per[1]])  # coef = 1 -> not in the restrictions
+                                  gamma[lay], value)  # coef = 1 -> not in the restrictions
 
             # multiplication of each of the couple restrictions
             for i in self.adders:
