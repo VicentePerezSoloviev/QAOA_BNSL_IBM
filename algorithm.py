@@ -81,12 +81,13 @@ def get_black_box_objective(p, n, alpha1, alpha2, weights, nbshots, alpha, noise
         dt = dt.sort_values(by=['cost'], ascending=True).head(aux)
         # dt = dt.nlargest(aux, 'cost')
         dt = dt.reset_index()
+        print(dict(dt.loc[0]))
         sum_parc = dt['prob'].sum()
 
         for i in range(len(dt)):
             avr_c = avr_c + (float(dt.loc[i, 'prob'])*float(dt.loc[i, 'cost'])/sum_parc)
 
         progress.append(avr_c)
-        return avr_c  # negative when we want to maximize
+        return -avr_c  # negative when we want to maximize
 
     return f

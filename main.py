@@ -21,7 +21,7 @@ def generate_zero_weight_matrix(n):
     return matrix
 
 
-p = 3
+p = 5
 alpha = 0.9
 nbshots = 1000
 
@@ -30,7 +30,7 @@ weights[1, 0] = -10
 weights[2, 0] = -10
 weights[3, 1, 2] = -10'''
 
-n = 5
+n = 4
 scores = Scores()
 weights = scores.load_data("cancer.txt")
 
@@ -41,7 +41,7 @@ error2 = depolarizing_error(gamma*2, 2)
 noise_model.add_all_qubit_quantum_error(error1, ['rx', 'h', 'rz'])
 noise_model.add_all_qubit_quantum_error(error2, ['cnot', 'cx'])
 
-df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=17, alpha2=17, cvar_alpha=alpha,
+df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=170000, alpha2=170000, cvar_alpha=alpha,
                              weights=weights, noise=None)
 
 print(df)
