@@ -1,5 +1,7 @@
 *.csv
 cancer_10000.txt
+cancer.txt
+*.rda
 experiment*
 exp_cancer.py
 comparison.py

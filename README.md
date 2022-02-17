@@ -9,3 +9,6 @@ Experimental code for the application of the QAOA algorithm for the Bayesian net
 - Extract and analyze results
 - Input a noise model to the simulation and analyze behaviour
 
+
+Code is available for Qiskit library but also for myQLM. In this repo only the Qiskit code has been made available.
+
