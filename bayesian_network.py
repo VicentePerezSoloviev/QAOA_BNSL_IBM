@@ -5,6 +5,7 @@ import numpy as np
 from pyvis.network import Network
 import pandas as pd
 from scores import Scores
+from rpy2.robjects import r
 
 
 class BN:
@@ -70,6 +71,30 @@ class BN:
 
         net.show_buttons()
         net.show(name + '.html')
+
+    def compute_shd(self, g2):
+        # g1 and g2 are matrices with the adj matrix
+        ind1, str1 = generate_r_matrix(self.adj)
+        ind2, str2 = generate_r_matrix(g2)
+
+        string = '''
+        library(bnlearn)
+        vars = ''' + str(ind1) + '''
+        e1 = empty.graph(vars)
+        arc.set = matrix(''' + str1 + '''
+        , ncol = 2, byrow = TRUE, dimnames = list(NULL, c("from", "to")))
+        arcs(e1) = arc.set
+
+        e2 = empty.graph(vars)
+        arc.set = matrix(''' + str2 + '''
+        , ncol = 2, byrow = TRUE, dimnames = list(NULL, c("from", "to")))
+        arcs(e2) = arc.set
+
+        print(shd(e1, e2))
+        '''
+
+        res = r(string)
+        return list(res)[0]
 
     def compare_structures(self, structure, identity):
         """
@@ -193,3 +218,28 @@ def load_result_experiments_alg(alg, size, prob):
     adj = load_adj(dt, identity)
 
     return adj
+
+
+def generate_r_matrix(matrix):
+    indexes = list(range(len(matrix)))
+    # indexes = [str(i) for i in indexes]
+    string_indexes = 'c('
+    for i in indexes:
+        string_indexes = string_indexes + '"' + str(i) + '",'
+
+    string_indexes = string_indexes[:-1] + ')'
+
+    string = 'c('
+
+    for i in range(len(matrix)):
+        outcomes = [int(row[i]) for row in matrix]
+        pos = [i for i, e in enumerate(outcomes) if e == 1]
+        for j in pos:
+            string = string + 'c("' + str(i) + '","' + str(j) + '"),'
+
+    string = string[:-1] + ')'
+
+    return string_indexes, string
+
+
+

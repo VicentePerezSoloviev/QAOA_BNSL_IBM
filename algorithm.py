@@ -59,9 +59,11 @@ def get_black_box_objective(p, n, alpha1, alpha2, weights, nbshots, alpha, noise
         if noise is not None:
             # qpu_predef = NoisyQProc(hardware_model=noise)
             # result = qpu_predef.submit(job)
+            # print('ei')
             job = execute(my_circuit, backend, shots=nbshots, noise_model=noise)
 
         else:
+            # print('ei')
             # result = get_default_qpu().submit(job)
             job = execute(my_circuit, backend, shots=nbshots)
 
@@ -78,16 +80,19 @@ def get_black_box_objective(p, n, alpha1, alpha2, weights, nbshots, alpha, noise
 
         # Conditional Value at Risk (CVaR)
         aux = int(len(dt) * alpha)
-        dt = dt.sort_values(by=['cost'], ascending=True).head(aux)
+        dt = dt.sort_values(by=['prob'], ascending=False).head(aux)
         # dt = dt.nlargest(aux, 'cost')
         dt = dt.reset_index()
-        print(dict(dt.loc[0]))
-        sum_parc = dt['prob'].sum()
+        # print(dict(dt.loc[0]))
+        sum_parc = dt['cost'].sum()
 
         for i in range(len(dt)):
             avr_c = avr_c + (float(dt.loc[i, 'prob'])*float(dt.loc[i, 'cost'])/sum_parc)
+            # print(dt.loc[i, 'prob'], dt.loc[i, 'cost'], avr_c)
 
         progress.append(avr_c)
-        return -avr_c  # negative when we want to maximize
+        # print(avr_c)
+        return avr_c  # negative when we want to maximize
+        # return min(dt['cost'])
 
     return f

@@ -182,7 +182,7 @@ class QAOA:
                 for j in range(self.n):
                     if i != j:
                         # in qubit i, j is the weight of j->i
-                        value = (-1) * (self.weights[i, j]) # - self.weights[i])  # subtract w_i({null})
+                        value = (-1) * (self.weights[i, j] - self.weights[i])  # subtract w_i({null})
                         self.circuit.rz(gamma[lay] * value, self.qreg[self.index_adj_adder(j, i)])
 
             # multiplication of combination of 2-nodes and weight(node|2parents) in same adj col
@@ -191,8 +191,8 @@ class QAOA:
                 perm = combinations(array, m)
                 for per in perm:
                     # i | perm, perm
-                    value = self.weights[i, per[0], per[1]] # + self.weights[i] - \
-                            # self.weights[i, per[0]] - self.weights[i, per[1]]
+                    value = self.weights[i, per[0], per[1]] + self.weights[i] - \
+                            self.weights[i, per[0]] - self.weights[i, per[1]]
                     self.adj_mult([self.index_adj_adder(per[0], i), self.index_adj_adder(per[1], i)],
                                   gamma[lay], value)  # coef = 1 -> not in the restrictions
 
