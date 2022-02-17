@@ -21,25 +21,22 @@ def generate_zero_weight_matrix(n):
     return matrix
 
 
-p = 7
-alpha = 0.3
-nbshots = 1000
+p = 3  # number of layers
+alpha = 0.3  # Conditional Value at a Risk
+nbshots = 1000  # Number of shots in the quantum circuit during runtime
 
-'''weights = generate_zero_weight_matrix(n)
-weights[1, 0] = -10
-weights[2, 0] = -10
-weights[3, 1, 2] = -10'''
-
-n = 4
 scores = Scores()
 weights = scores.load_data("cancer.txt")
+n = len(scores.identity)
 
+'''
 gamma = 0.5
 noise_model = NoiseModel()
 error1 = depolarizing_error(gamma, 1)
 error2 = depolarizing_error(gamma*2, 2)
 noise_model.add_all_qubit_quantum_error(error1, ['rx', 'h', 'rz'])
 noise_model.add_all_qubit_quantum_error(error2, ['cnot', 'cx'])
+'''
 
 df, its, avr_C = execute_ibm(n=n, p=p, nbshots=nbshots, alpha1=1000, alpha2=1000, cvar_alpha=alpha,
                              weights=weights, noise=None)

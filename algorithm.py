@@ -6,7 +6,6 @@ import pandas as pd
 import random
 import numpy as np
 from qiskit import Aer, execute
-import matplotlib.pyplot as plt
 
 progress = []
 
