@@ -1,0 +1,120 @@
+Pollution Cancer Dyspnoea -21267.5015413854
+Pollution Cancer -21259.8051306828
+Pollution Dyspnoea -21273.056630041
+Pollution -21268.5200690489
+Pollution Cancer Smoker -21258.0183048208
+Pollution Cancer -21259.8051306828
+Pollution Smoker -21272.4670321013
+Pollution -21268.5200690489
+Pollution Cancer Xray -21267.4878767908
+Pollution Cancer -21259.8051306828
+Pollution Xray -21272.6694127565
+Pollution -21268.5200690489
+Pollution Dyspnoea Smoker -21282.0584383106
+Pollution Dyspnoea -21273.056630041
+Pollution Smoker -21272.4670321013
+Pollution -21268.5200690489
+Pollution Dyspnoea Xray -21281.4678634741
+Pollution Dyspnoea -21273.056630041
+Pollution Xray -21272.6694127565
+Pollution -21268.5200690489
+Pollution Smoker Xray -21280.8832564317
+Pollution Smoker -21272.4670321013
+Pollution Xray -21272.6694127565
+Pollution -21268.5200690489
+Smoker Cancer Dyspnoea -21208.5013698706
+Smoker Cancer -21203.0134660076
+Smoker Dyspnoea -21273.48670783
+Smoker -21268.5200690489
+Smoker Cancer Pollution -21201.2266401455
+Smoker Cancer -21203.0134660076
+Smoker Pollution -21272.4670321013
+Smoker -21268.5200690489
+Smoker Cancer Xray -21207.1818694055
+Smoker Cancer -21203.0134660076
+Smoker Xray -21267.6629139683
+Smoker -21268.5200690489
+Smoker Dyspnoea Pollution -21282.4885160996
+Smoker Dyspnoea -21273.48670783
+Smoker Pollution -21272.4670321013
+Smoker -21268.5200690489
+Smoker Dyspnoea Xray -21276.9620367502
+Smoker Dyspnoea -21273.48670783
+Smoker Xray -21267.6629139683
+Smoker -21268.5200690489
+Smoker Pollution Xray -21275.8767576434
+Smoker Pollution -21272.4670321013
+Smoker Xray -21267.6629139683
+Smoker -21268.5200690489
+Cancer Dyspnoea Pollution -21250.4744198452
+Cancer Dyspnoea -21256.0295085008
+Cancer Pollution -21259.8051306828
+Cancer -21268.5200690489
+Cancer Dyspnoea Smoker -21191.0441705414
+Cancer Dyspnoea -21256.0295085008
+Cancer Smoker -21203.0134660076
+Cancer -21268.5200690489
+Cancer Dyspnoea Xray -21138.0949347504
+Cancer Dyspnoea -21256.0295085008
+Cancer Xray -21145.3395180341
+Cancer -21268.5200690489
+Cancer Pollution Smoker -21188.564738727
+Cancer Pollution -21259.8051306828
+Cancer Smoker -21203.0134660076
+Cancer -21268.5200690489
+Cancer Pollution Xray -21140.1579820684
+Cancer Pollution -21259.8051306828
+Cancer Xray -21145.3395180341
+Cancer -21268.5200690489
+Cancer Smoker Xray -21084.8584734713
+Cancer Smoker -21203.0134660076
+Cancer Xray -21145.3395180341
+Cancer -21268.5200690489
+Xray Cancer Dyspnoea -21153.1644662169
+Xray Cancer -21145.3395180341
+Xray Dyspnoea -21271.0990399673
+Xray -21268.5200690489
+Xray Cancer Pollution -21153.022264142
+Xray Cancer -21145.3395180341
+Xray Pollution -21272.6694127565
+Xray -21268.5200690489
+Xray Cancer Smoker -21149.5079214319
+Xray Cancer -21145.3395180341
+Xray Smoker -21267.6629139683
+Xray -21268.5200690489
+Xray Dyspnoea Pollution -21279.5102734004
+Xray Dyspnoea -21271.0990399673
+Xray Pollution -21272.6694127565
+Xray -21268.5200690489
+Xray Dyspnoea Smoker -21274.5743688874
+Xray Dyspnoea -21271.0990399673
+Xray Smoker -21267.6629139683
+Xray -21268.5200690489
+Xray Pollution Smoker -21276.0791382986
+Xray Pollution -21272.6694127565
+Xray Smoker -21267.6629139683
+Xray -21268.5200690489
+Dyspnoea Cancer Pollution -21263.7259192033
+Dyspnoea Cancer -21256.0295085008
+Dyspnoea Pollution -21273.056630041
+Dyspnoea -21268.5200690489
+Dyspnoea Cancer Smoker -21261.5174123637
+Dyspnoea Cancer -21256.0295085008
+Dyspnoea Smoker -21273.48670783
+Dyspnoea -21268.5200690489
+Dyspnoea Cancer Xray -21263.8544566835
+Dyspnoea Cancer -21256.0295085008
+Dyspnoea Xray -21271.0990399672
+Dyspnoea -21268.5200690489
+Dyspnoea Pollution Smoker -21283.0781140392
+Dyspnoea Pollution -21273.056630041
+Dyspnoea Smoker -21273.48670783
+Dyspnoea -21268.5200690489
+Dyspnoea Pollution Xray -21279.8974906849
+Dyspnoea Pollution -21273.056630041
+Dyspnoea Xray -21271.0990399672
+Dyspnoea -21268.5200690489
+Dyspnoea Smoker Xray -21280.3981627491
+Dyspnoea Smoker -21273.48670783
+Dyspnoea Xray -21271.0990399672
+Dyspnoea -21268.5200690489

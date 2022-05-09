@@ -1,0 +1,96 @@
+Smoker Cancer Dyspnoea -2164.57835740933
+Smoker Cancer -2157.87037061043
+Smoker Dyspnoea -2161.46904894887
+Smoker -2158.03515264723
+Smoker Cancer Pollution -2164.30336670625
+Smoker Cancer -2157.87037061043
+Smoker Pollution -2161.4775341759
+Smoker -2158.03515264723
+Smoker Cancer Xray -2163.79800555769
+Smoker Cancer -2157.87037061043
+Smoker Xray -2161.2018326911
+Smoker -2158.03515264723
+Smoker Dyspnoea Pollution -2168.35547884869
+Smoker Dyspnoea -2161.46904894887
+Smoker Pollution -2161.4775341759
+Smoker -2158.03515264723
+Smoker Dyspnoea Xray -2166.9603517225
+Smoker Dyspnoea -2161.46904894887
+Smoker Xray -2161.2018326911
+Smoker -2158.03515264723
+Smoker Pollution Xray -2167.75343453313
+Smoker Pollution -2161.4775341759
+Smoker Xray -2161.2018326911
+Smoker -2158.03515264723
+Cancer Dyspnoea Pollution -2156.80773831706
+Cancer Dyspnoea -2158.9407780092
+Cancer Pollution -2153.72938536017
+Cancer -2158.03515264723
+Cancer Dyspnoea Smoker -2162.05008646966
+Cancer Dyspnoea -2158.9407780092
+Cancer Smoker -2157.87037061043
+Cancer -2158.03515264723
+Cancer Dyspnoea Xray -2155.98667132833
+Cancer Dyspnoea -2158.9407780092
+Cancer Xray -2153.74437756655
+Cancer -2158.03515264723
+Cancer Pollution Smoker -2156.55521789051
+Cancer Pollution -2153.72938536017
+Cancer Smoker -2157.87037061043
+Cancer -2158.03515264723
+Cancer Pollution Xray -2151.71783707995
+Cancer Pollution -2153.72938536017
+Cancer Xray -2153.74437756655
+Cancer -2158.03515264723
+Cancer Smoker Xray -2156.34055043314
+Cancer Smoker -2157.87037061043
+Cancer Xray -2153.74437756655
+Cancer -2158.03515264723
+Xray Cancer Dyspnoea -2158.12090887818
+Xray Cancer -2153.74437756655
+Xray Dyspnoea -2161.07501555905
+Xray -2158.03515264723
+Xray Cancer Pollution -2158.92738770321
+Xray Cancer -2153.74437756655
+Xray Pollution -2160.93893598343
+Xray -2158.03515264723
+Xray Cancer Smoker -2159.67201251381
+Xray Cancer -2153.74437756655
+Xray Smoker -2161.2018326911
+Xray -2158.03515264723
+Xray Dyspnoea Pollution -2167.37935640908
+Xray Dyspnoea -2161.07501555905
+Xray Pollution -2160.93893598343
+Xray -2158.03515264723
+Xray Dyspnoea Smoker -2166.56631833268
+Xray Dyspnoea -2161.07501555905
+Xray Smoker -2161.2018326911
+Xray -2158.03515264723
+Xray Pollution Smoker -2167.21483634066
+Xray Pollution -2160.93893598343
+Xray Smoker -2161.2018326911
+Xray -2158.03515264723
+Dyspnoea Cancer Pollution -2163.10416598459
+Dyspnoea Cancer -2158.9407780092
+Dyspnoea Pollution -2160.02581302771
+Dyspnoea -2158.03515264723
+Dyspnoea Cancer Smoker -2165.6487648081
+Dyspnoea Cancer -2158.9407780092
+Dyspnoea Smoker -2161.46904894887
+Dyspnoea -2158.03515264723
+Dyspnoea Cancer Xray -2163.31730932082
+Dyspnoea Cancer -2158.9407780092
+Dyspnoea Xray -2161.07501555905
+Dyspnoea -2158.03515264723
+Dyspnoea Pollution Smoker -2166.90375770049
+Dyspnoea Pollution -2160.02581302771
+Dyspnoea Smoker -2161.46904894887
+Dyspnoea -2158.03515264723
+Dyspnoea Pollution Xray -2166.46623345336
+Dyspnoea Pollution -2160.02581302771
+Dyspnoea Xray -2161.07501555905
+Dyspnoea -2158.03515264723
+Dyspnoea Smoker Xray -2166.83353459044
+Dyspnoea Smoker -2161.46904894887
+Dyspnoea Xray -2161.07501555905
+Dyspnoea -2158.03515264723
